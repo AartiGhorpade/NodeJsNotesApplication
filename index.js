@@ -15,9 +15,19 @@ app.get('/', (req, resp) => {
 
 app.get('/file/:filename', (req, resp) => {
     fs.readFile(`./files/${req.params.filename}`, "utf-8", (err, filedata) => {
-        resp.render("show", { filename: req.params.filename, filedata : filedata })
+        resp.render("show", { filename: req.params.filename, filedata: filedata })
     })
 })
+
+app.get('/edit/:filename', (req, resp) => {
+    resp.render("edit", { filename: req.params.filename })
+})
+app.post('/editFileName', (req, resp) => {
+    fs.rename(`./files/${req.body.prevtitle}`, `./files/${req.body.newtitle}`, (err) => {
+        resp.redirect('/')
+    })
+})
+
 app.post('/create', (req, resp) => {
     const fileName = `./files/${req.body.title.split(' ').join('')}.txt`
     fs.writeFile(fileName, req.body.details, () => {

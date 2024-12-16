@@ -20,33 +20,12 @@
 
 <body>
     <div class="container">
-        <form action="/create" method="post">
-            <input type="text" class=" mt-4 form-control" placeholder="write subject name" name="title">
-            <textarea name="details" style="resize: none;" class=" mt-4 form-control"></textarea>
-            <input type="submit" value="submt" class=" my-4 btn btn-primary">
+        <form action="/editFileName" method="post">
+            <input type="text" class=" mt-4 form-control" placeholder="write subject name" name="prevtitle"
+                value="<%= filename %>">
+            <input type="text" class=" mt-4 form-control" placeholder="write new name" name="newtitle">
+            <input type="submit" value="Update" class=" my-4 btn btn-secondary">
         </form>
-
-        <div class="container">
-            <div class="row">
-                <% if(files.length>0 ){ %>
-                    <% files.forEach((data)=>{ %>
-                        <% console.log(data) %>
-                            <div class="col-lg-4">
-                                <h4>
-                                    <%= data %>
-                                </h4>
-                                <a href="/file/<%= data %>">Read more...</a>
-
-                                <a href="/edit/<%= data %>">Edit filename</a>
-                            </div>
-                            <% })%>
-                                <% } else { %>
-                                    <p>no data...</p>
-
-                                    <% } %>
-
-            </div>
-        </div>
     </div>
 
 </body>
